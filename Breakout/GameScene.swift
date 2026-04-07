@@ -114,13 +114,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // now, figure the number and spacing of each row of bricks
         let count = Int(frame.width) / 55 // bricks per row
         let xOffset = (Int(frame.width) - (count * 55)) / 2 + Int(frame.minX) + 25
-        let colors: [UIColor] = [.blue, .orange, .green]
+        let colors: [UIColor] = [.systemTeal, .systemYellow, .magenta]
+        
+        // top random row
+        let randomColors: [UIColor] = [.systemTeal, .systemYellow, .magenta]
+        let topY = Int(frame.maxY) - 65 + 25 // one row above
+        for i in 0..<count {
+            let x = i * 55 + xOffset
+            let randomColor = randomColors.randomElement()!
+            makeBrick(x: x, y: topY, color: randomColor)
+        }
+        
+        // middle rows (not random)
         for r in 0..<3 {
             let y = Int(frame.maxY) - 65 - (r * 25)
             for i in 0..<count {
                 let x = i * 55 + xOffset
                 makeBrick(x: x, y: y, color: colors[r])
             }
+        }
+        
+        // bottom random row
+        let bottomY = Int(frame.maxY) - 65 - (3 * 25) // one row above
+        for i in 0..<count {
+            let x = i * 55 + xOffset
+            let randomColor = randomColors.randomElement()!
+            makeBrick(x: x, y: bottomY, color: randomColor)
         }
     }
     
