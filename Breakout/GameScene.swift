@@ -58,8 +58,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ball.removeFromParent() // remove the ball (if it exists)
         ball = SKShapeNode(circleOfRadius: 10)
         ball.position = CGPoint(x: frame.midX, y: frame.midY)
-        ball.strokeColor = .black
-        ball.fillColor = .yellow
+        ball.strokeColor = .white
+        ball.fillColor = .white
         ball.name = "ball"
         
         // physics shape matches ball image
