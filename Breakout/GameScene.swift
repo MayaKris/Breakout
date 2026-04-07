@@ -202,7 +202,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 score += 1
                 // increase ball velocity by 2%
                 ball.physicsBody!.velocity.dx *= CGFloat(1.02)
-                ball.physicsBody!.velocity.dx *= CGFloat(1.02)
+                ball.physicsBody!.velocity.dy *= CGFloat(1.02)
                 updateLabels()
                 if brick.color == .blue {
                     brick.color = .orange // blue bricks turn orange
@@ -217,6 +217,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         gameOver(winner: true)
                     }
                 }
+            }
+        }
+        if contact.bodyA.node?.name == "loseZone" ||
+        contact.bodyB.node?.name == "loseZone" {
+            lives -= 1
+            if lives > 0 {
+                score = 0
+                resetGame()
+                kickBall()
+            }
+            else {
+                gameOver(winner: false)
             }
         }
     }
